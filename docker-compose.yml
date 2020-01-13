@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_unicode_ci
+      --general-log=true
+      --general-log-file=/var/log/mysql/general.log
+    environment:
+      - MYSQL_DATABASE=ogp
+      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_USER=default
+      - MYSQL_PASSWORD=password
+      - TZ=Asia/Tokyo
+    ports:
+      - "3306:3306"
