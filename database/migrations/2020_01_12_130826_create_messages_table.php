@@ -15,7 +15,7 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('url');
+            $table->string('file_path');
             $table->string('content');
             $table->timestamps();
 

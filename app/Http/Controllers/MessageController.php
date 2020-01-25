@@ -23,7 +23,7 @@ class MessageController extends Controller
 
         return response()->json([
             'message' => $message->content,
-            'url' => $message->url
+            'url' => config('app.image_url') . '/' . $message->file_path
         ]);
     }
 
@@ -44,12 +44,12 @@ class MessageController extends Controller
 
         $id = DB::transaction(function () use ($decodedImage, $content) {
             $id = Str::uuid();
-            $url = config('app.image_url') . '/' . $id->toString() . '.jpg';
+            $file = $id->toString() . '.jpg';
 
             Message::create([
                 'id' => $id,
                 'content' => $content,
-                'url' => $url,
+                'file_path' => $file,
             ]);
 
             $fileName = $id->toString() . '.jpg';
