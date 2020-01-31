@@ -52,13 +52,12 @@ class MessageController extends Controller
                 'file_path' => $file,
             ]);
 
-            $fileName = $id->toString() . '.jpg';
-            $isSuccess = Storage::disk('s3')->put($fileName, $decodedImage);
+            $isSuccess = Storage::disk('s3')->put($file, $decodedImage);
             if (!$isSuccess) {
                 throw new Exception('ファイルアップロード時にエラーが発生しました。');
             }
 
-            Storage::disk('s3')->setVisibility($fileName, 'public');
+            Storage::disk('s3')->setVisibility($file, 'public');
 
             return $id;
         });
